@@ -1,10 +1,10 @@
 package service
 
 import (
-	pb "app/genproto"
-	l "app/pkg/logger"
-	"app/storage"
 	"context"
+	pb "github.com/NafisaTojiboyeva/todo-service/genproto"
+	l "github.com/NafisaTojiboyeva/todo-service/pkg/logger"
+	"github.com/NafisaTojiboyeva/todo-service/storage"
 	"github.com/jmoiron/sqlx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

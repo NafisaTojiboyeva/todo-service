@@ -1,8 +1,8 @@
 package storage
 
 import (
-	"app/storage/postgres"
-	"app/storage/repo"
+	"github.com/NafisaTojiboyeva/todo-service/storage/postgres"
+	"github.com/NafisaTojiboyeva/todo-service/storage/repo"
 	"github.com/jmoiron/sqlx"
 )
 

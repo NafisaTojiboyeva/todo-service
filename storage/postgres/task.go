@@ -5,7 +5,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"time"
 
-	pb "app/genproto"
+	pb "github.com/NafisaTojiboyeva/todo-service/genproto"
 )
 
 type taskRepo struct {

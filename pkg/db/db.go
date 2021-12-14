@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"app/config"
+	"github.com/NafisaTojiboyeva/todo-service/config"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"

@@ -1,7 +1,7 @@
 package grpcClient
 
 import (
-	"app/config"
+	"github.com/NafisaTojiboyeva/todo-service/config"
 )
 
 //IGrpcClient ...

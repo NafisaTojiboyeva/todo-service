@@ -3,11 +3,11 @@ package main
 import (
 	"net"
 
-	"app/config"
-	pb "app/genproto"
-	"app/pkg/db"
-	"app/pkg/logger"
-	"app/service"
+	"github.com/NafisaTojiboyeva/todo-service/config"
+	pb "github.com/NafisaTojiboyeva/todo-service/genproto"
+	"github.com/NafisaTojiboyeva/todo-service/pkg/db"
+	"github.com/NafisaTojiboyeva/todo-service/pkg/logger"
+	"github.com/NafisaTojiboyeva/todo-service/service"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

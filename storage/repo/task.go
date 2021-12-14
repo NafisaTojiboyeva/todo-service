@@ -1,7 +1,7 @@
 package repo
 
 import (
-	pb "app/genproto"
+	pb "github.com/NafisaTojiboyeva/todo-service/genproto"
 )
 
 // TaskStorageI ...
