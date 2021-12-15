@@ -2,10 +2,12 @@ package postgres
 
 import (
 	"database/sql"
-	"github.com/jmoiron/sqlx"
+	"fmt"
 	"time"
 
 	pb "github.com/NafisaTojiboyeva/todo-service/genproto"
+
+	"github.com/jmoiron/sqlx"
 )
 
 type taskRepo struct {
@@ -56,11 +58,11 @@ func (r *taskRepo) List(page, limit int64) ([]*pb.Task, int64, error) {
 
 	var (
 		tasks []*pb.Task
-		task  pb.Task
 		count int64
 	)
 
 	for rows.Next() {
+		var task pb.Task
 		err = rows.Scan(&task.Id, &task.Assignee, &task.Title, &task.Summary, &task.Deadline, &task.Status)
 		if err != nil {
 			return nil, 0, err
@@ -108,13 +110,14 @@ func (r *taskRepo) Delete(id int64) error {
 	return nil
 }
 
-func (r *taskRepo) ListOverdue(deadline string) ([]*pb.Task, int64, error) {
+func (r *taskRepo) ListOverdue(deadline string, page, limit int64) ([]*pb.Task, int64, error) {
+	offset := (page - 1) * limit
 	time, err := time.Parse("2006-01-02", deadline)
 	if err != nil {
 		return nil, 0, err
 	}
 	rows, err := r.db.Queryx(
-		`SELECT id, assignee, title, summary, deadline, status FROM todos WHERE deadline < ($1::timestamp)`, time)
+		`SELECT id, assignee, title, summary, deadline, status FROM todos WHERE deadline < $1 LIMIT $2 OFFSET $3 `, time, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -125,11 +128,11 @@ func (r *taskRepo) ListOverdue(deadline string) ([]*pb.Task, int64, error) {
 
 	var (
 		tasks []*pb.Task
-		task  pb.Task
 		count int64
 	)
 
 	for rows.Next() {
+		var task pb.Task
 		err = rows.Scan(&task.Id, &task.Assignee, &task.Title, &task.Summary, &task.Deadline, &task.Status)
 		if err != nil {
 			return nil, 0, err
@@ -139,6 +142,7 @@ func (r *taskRepo) ListOverdue(deadline string) ([]*pb.Task, int64, error) {
 
 	err = r.db.QueryRow(`SELECT count(id) FROM todos WHERE deadline < $1`, time).Scan(&count)
 	if err != nil {
+		fmt.Println("countda xato")
 		return nil, 0, err
 	}
 

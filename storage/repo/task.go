@@ -11,5 +11,5 @@ type TaskStorageI interface {
 	List(page, limit int64) ([]*pb.Task, int64, error)
 	Update(pb.Task) (pb.Task, error)
 	Delete(id int64) error
-	ListOverdue(deadline string) ([]*pb.Task, int64, error)
+	ListOverdue(deadline string, page, limit int64) ([]*pb.Task, int64, error)
 }

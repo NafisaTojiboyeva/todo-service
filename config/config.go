@@ -1,8 +1,9 @@
 package config
 
 import (
-	"github.com/spf13/cast"
 	"os"
+
+	"github.com/spf13/cast"
 )
 
 // Config ...

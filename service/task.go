@@ -2,10 +2,11 @@ package service
 
 import (
 	"context"
+
 	pb "github.com/NafisaTojiboyeva/todo-service/genproto"
 	l "github.com/NafisaTojiboyeva/todo-service/pkg/logger"
 	"github.com/NafisaTojiboyeva/todo-service/storage"
-	"github.com/jmoiron/sqlx"
+
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -15,10 +16,10 @@ type ToDoService struct {
 	logger  l.Logger
 }
 
-// NewToDoService
-func NewToDoService(db *sqlx.DB, log l.Logger) *ToDoService {
+// NewToDoService ...
+func NewToDoService(storage storage.IStorage, log l.Logger) *ToDoService {
 	return &ToDoService{
-		storage: storage.NewStoragePg(db),
+		storage: storage,
 		logger:  log,
 	}
 }
@@ -77,7 +78,7 @@ func (s *ToDoService) Delete(ctx context.Context, req *pb.ByIdReq) (*pb.EmptyRes
 }
 
 func (s *ToDoService) ListOverdue(ctx context.Context, req *pb.ByDeadlineReq) (*pb.ListResp, error) {
-	tasks, count, err := s.storage.Task().ListOverdue(req.Deadline)
+	tasks, count, err := s.storage.Task().ListOverdue(req.Deadline, req.Page, req.Limit)
 	if err != nil {
 		s.logger.Error("failed to get task", l.Error(err))
 		return nil, status.Error(codes.Internal, "failed to get task")

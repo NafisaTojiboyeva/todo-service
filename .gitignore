@@ -11,10 +11,11 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Editor files
-.idea/
+# ide configuration
+.idea
 
-bin/
+# all vendored dependencies
+vendor
 
-# Dependency directories (remove the comment below to include it)
-vendor/
+# build binaries
+bin

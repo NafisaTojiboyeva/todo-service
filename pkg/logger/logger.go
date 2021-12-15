@@ -32,6 +32,7 @@ type Logger interface {
 	Error(msg string, fields ...Field)
 	Fatal(msg string, fields ...Field)
 }
+
 type LoggerImpl struct {
 	zap *zap.Logger
 }
