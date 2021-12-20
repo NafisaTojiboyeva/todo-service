@@ -1,1 +1,1 @@
-drop table if exists table todos;
+drop table if exists todos;

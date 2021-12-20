@@ -12,18 +12,20 @@ service ToDoService {
 }
 
 message Task {
-  int64 id = 1;
+  string id = 1;
   string Assignee = 2;
   string Title = 3;
   string Summary = 4;
   string Deadline = 5;
   string Status = 6;
+  string CreatedAt = 7;
+  string UpdatedAt = 8;
 }
 
 message EmptyResp {}
 
 message ByIdReq {
-  int64 id = 1;
+  string id = 1;
 }
 
 message ListReq {
