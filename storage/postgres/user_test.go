@@ -297,13 +297,13 @@ func TestTaskRepo_Delete(t *testing.T) {
 	}{
 		{
 			name:    "successful",
-			input:   "a7d8c465-8178-4455-9a8c-adb951f758c6",
+			input:   "24465fe0-9ea1-45ce-8a7a-79c63972efe9",
 			want:    nil,
 			wantErr: false,
 		},
 		{
 			name:    "delete not existing id",
-			input:   "a7d8c465-8178-4455-9a8c-adb951f758c7",
+			input:   "24465fe0-9ea1-45ce-8a7a-79c63972efe8",
 			want:    errors.New("sql: no rows in result set"),
 			wantErr: true,
 		},
